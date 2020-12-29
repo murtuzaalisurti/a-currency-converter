@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="heading-container">
+        <h1>Currency Converter</h1>
+    </div>
+    <div class="main-container">
+        <p id="from">From</p>
+        <select id="drop-down-1">
+            <option disabled="disabled" selected>Select an Option...</option>
+            <option value="AUD">AUD</option>
+            <option value="BGN">BGN</option>
+            <option value="BRL">BRL</option>
+            <option value="CAD">CAD</option>
+            <option value="CHF">CHF</option>
+            <option value="CNY">CNY</option>
+            <option value="CZK">CZK</option>
+            <option value="DKK">DKK</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="HKD">HKD</option>
+            <option value="HRK">HRK</option>
+            <option value="HUF">HUF</option>
+            <option value="IDR">IDR</option>
+            <option value="ILS">ILS</option>
+            <option value="INR">INR</option>
+            <option value="ISK">ISK</option>
+            <option value="JPY">JPY</option>
+            <option value="KRW">KRW</option>
+            <option value="MXN">MXN</option>
+            <option value="MYR">MYR</option>
+            <option value="NOK">NOK</option>
+            <option value="NZD">NZD</option>
+            <option value="PHP">PHP</option>
+            <option value="PLN">PLN</option>
+            <option value="RON">RON</option>
+            <option value="RUB">RUB</option>
+            <option value="SEK">SEK</option>
+            <option value="SGD">SGD</option>
+            <option value="THB">THB</option>
+            <option value="TRY">TRY</option>
+            <option value="USD">USD</option>
+            <option value="ZAR">ZAR</option>
+        </select>
+        <p id="to">To</p>
+        <select id="drop-down-2">
+            <option disabled="disabled" selected>Select an Option...</option>
+            <option value="AUD">AUD</option>
+            <option value="BGN">BGN</option>
+            <option value="BRL">BRL</option>
+            <option value="CAD">CAD</option>
+            <option value="CHF">CHF</option>
+            <option value="CNY">CNY</option>
+            <option value="CZK">CZK</option>
+            <option value="DKK">DKK</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="HKD">HKD</option>
+            <option value="HRK">HRK</option>
+            <option value="HUF">HUF</option>
+            <option value="IDR">IDR</option>
+            <option value="ILS">ILS</option>
+            <option value="INR">INR</option>
+            <option value="ISK">ISK</option>
+            <option value="JPY">JPY</option>
+            <option value="KRW">KRW</option>
+            <option value="MXN">MXN</option>
+            <option value="MYR">MYR</option>
+            <option value="NOK">NOK</option>
+            <option value="NZD">NZD</option>
+            <option value="PHP">PHP</option>
+            <option value="PLN">PLN</option>
+            <option value="RON">RON</option>
+            <option value="RUB">RUB</option>
+            <option value="SEK">SEK</option>
+            <option value="SGD">SGD</option>
+            <option value="THB">THB</option>
+            <option value="TRY">TRY</option>
+            <option value="USD">USD</option>
+            <option value="ZAR">ZAR</option>
+        </select>
+    </div>
+    <div class="btn-container">
+        <form>
+            <input type="submit" value="Convert" id="btn">
+        </form>
+    </div>
+    <div id="result"></div>
+    <script src="./js/main.js"></script>
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("#btn").disabled = true;
+            document.querySelector("#drop-down-2").onchange = () => {
+                document.querySelector("#btn").disabled = false;
+                document.querySelector("form").onsubmit = () => {
+                    const fromcurrency = document.querySelector("#drop-down-1").value;
+                    var url = new URL("https://api.exchangeratesapi.io/latest?base=USD");
+                    var search_params = url.searchParams;
+                    let Base = search_params.set('base', fromcurrency);
+                    url.search = search_params.toString();
+                    var new_url = url.toString();
+                    console.log(new_url);
+                    fetch(new_url)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            const tocurrency = document.querySelector("#drop-down-2").value;
+                            const rate = data.rates[tocurrency];
+                            console.log(rate);
+                            if (rate !== undefined) {
+                                document.querySelector("#result").innerHTML = `1 ${fromcurrency} = ${rate.toFixed(3)} ${tocurrency}`;
+                                document.querySelector("#btn").disabled = true;
+                            }
+                            else {
+                                document.querySelector("#result").innerHTML = "Invalid Currency";
+                                document.querySelector("#btn").disabled = true;
+                            }
+                        }
+                        )
+                document.querySelector("#btn").disabled = true;
+                return false;
+            }
+            };
+        });
+    </script> -->
+</body>
+
+</html>
