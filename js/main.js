@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#btn").disabled = true;
-    document.querySelector("#drop-down-2").onchange = () => {
+    document.querySelector("#input1").onkeyup = () => {
+        // document.querySelector("#btn").disabled = false;
+        var selectdropdown = document.querySelectorAll("select");
+        console.log(selectdropdown);
+        for (let i = 0; i < selectdropdown.length; i++) {
+            selectdropdown[i].onchange = () => {
+                document.querySelector("#btn").disabled = false;
+            }
+        }
         document.querySelector("#btn").disabled = false;
         document.querySelector("form").onsubmit = () => {
             const fromcurrency = document.querySelector("#drop-down-1").value;
@@ -18,12 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     const rate = data.rates[tocurrency];
                     console.log(rate);
                     if (rate !== undefined) {
-                        document.querySelector("#result").innerHTML = `1 ${fromcurrency} = ${rate.toFixed(3)} ${tocurrency}`;
-                        document.querySelector("#btn").disabled = true;
+                        var convertfrom = document.getElementById("input1").value;
+                        var converted = convertfrom * rate;
+                        document.querySelector("#result").innerHTML = `<b>${convertfrom}</b>&nbsp ${fromcurrency} = &nbsp<b>${converted.toFixed(3)}</b>&nbsp ${tocurrency}`;
                     }
                     else {
                         document.querySelector("#result").innerHTML = "Invalid Currency";
-                        document.querySelector("#btn").disabled = true;
                     }
                 }
                 )
