@@ -36,28 +36,15 @@ h1{
     flex-flow: row wrap;
     justify-content: center;
     margin-top: 50px;
-    /* padding: 10px; */
 }
 #from, #to{
     display: inline-block;
-    /* background-color: #3a8bd3; */
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    /* margin-right: 5px; */
     font-size: 20px;
     width: 80px;
     text-align: left;
 }
-
-/* #from{
-    margin-right: 10px;
-}
-
-#to{
-    margin-right: 10px;
-    text-align: center;
-    /* margin-left: 20px; 
-} */
 
 #drop-down-1, #drop-down-2{
     outline: none;
@@ -67,9 +54,6 @@ h1{
     justify-self: center;
     padding: 5px;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.2);
-    /* align-items: center; */
-    /* margin: 20px 20px; */
-    /* justify-content: space-around; */
 }
 .number-input{
     width: 220px;
@@ -94,7 +78,6 @@ input[type=number]::-webkit-inner-spin-button {
     margin: 0;
 }
 .btn-container{
-    /* background-color: aliceblue; */
     color: black;
     font-family: 'Montserrat', sans-serif;
     justify-self: center;
