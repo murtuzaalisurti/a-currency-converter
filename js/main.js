@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#btn").disabled = true;
     document.querySelector("#input1").onkeyup = () => {
         var selectdropdown = document.querySelectorAll("select");
-        console.log(selectdropdown);
         for (let i = 0; i < selectdropdown.length; i++) {
             selectdropdown[i].onchange = () => {
                 document.querySelector("#btn").disabled = false;
@@ -16,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let Base = search_params.set('base', fromcurrency);
             url.search = search_params.toString();
             var new_url = url.toString();
-            console.log(new_url);
             fetch(new_url)
                 .then(response => response.json())
                 .then(data => {
@@ -25,33 +23,40 @@ document.addEventListener("DOMContentLoaded", function () {
                     const rate = data.rates[tocurrency];
                     console.log(rate);
                     if (rate !== undefined) {
-                        const convertto = document.querySelector("#input1").value;
-                        const converted = (convertto * rate).toFixed(3);
-                        if (tocurrency == "INR") {
-                            const array_number_0 = converted.toString().split("");
-                            const array_number = array_number_0.splice(0, array_number_0.length - 4);
-                            const array_number_decimal = array_number_0.splice(array_number_0.length - 4, array_number_0.length);
+                        const convertto = Number(document.querySelector("#input1").value);
+                        const convertto_round = convertto.toFixed(2);
+                        const converted = (convertto * rate).toFixed(2);
 
-                            if (array_number.length % 3 == 0) {
+                        function tocurrency_numeral_indian() {
+                            const array_number_0 = converted.toString().split("");
+
+                            for (let j = 0; j < array_number_0.length; j++) {
+                                if (array_number_0[j] == ".") {
+                                    var decimal_part_1 = array_number_0.slice(0, j);
+                                    var decimal_part_2 = array_number_0.slice(j, array_number_0.length);
+                                }
+                            }
+                            
+                            if (decimal_part_1.length % 3 == 0) {
                                 var array_join = ``;
-                                const array_number_part_1 = array_number.slice(array_number.length - (3), (array_number.length));
+                                const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3), (decimal_part_1.length));
                                 array_join = `${array_number_part_1.join("") + ","}${array_join}`;
-                                for (let i = 1; i <= ((array_number.length - 3) / 2); i++) {
-                                    const array_number_part_2 = array_number.slice(array_number.length - 3 - (2 * i), (array_number.length - 3 - (2 * (i - 1))));
+                                for (let i = 1; i <= ((decimal_part_1.length - 3) / 2); i++) {
+                                    const array_number_part_2 = decimal_part_1.slice(decimal_part_1.length - 3 - (2 * i), (decimal_part_1.length - 3 - (2 * (i - 1))));
                                     array_join = `${array_number_part_2.join("") + ","}${array_join}`;
                                 }
-                                const array_number_part_3 = array_number.slice((0), ((array_number.length - 3 - (2 * (Math.floor((array_number.length - 3) / 2))))));
+                                const array_number_part_3 = decimal_part_1.slice((0), ((decimal_part_1.length - 3 - (2 * (Math.floor((decimal_part_1.length - 3) / 2))))));
                                 array_join = `${array_number_part_3.join("") + ","}${array_join}`;
                             }
-                            else if (array_number.length % 3 !== 0) {
+                            else if (decimal_part_1.length % 3 !== 0) {
                                 var array_join = ``;
-                                const array_number_part_1 = array_number.slice(array_number.length - (3), (array_number.length));
+                                const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3), (decimal_part_1.length));
                                 array_join = `${array_number_part_1.join("") + ","}${array_join}`;
-                                for (let i = 1; i <= ((array_number.length - 3) / 2); i++) {
-                                    const array_number_part_2 = array_number.slice(array_number.length - 3 - (2 * i), (array_number.length - 3 - (2 * (i - 1))));
+                                for (let i = 1; i <= ((decimal_part_1.length - 3) / 2); i++) {
+                                    const array_number_part_2 = decimal_part_1.slice(decimal_part_1.length - 3 - (2 * i), (decimal_part_1.length - 3 - (2 * (i - 1))));
                                     array_join = `${array_number_part_2.join("") + ","}${array_join}`;
                                 }
-                                const array_number_part_3 = array_number.slice((0), ((array_number.length - 3 - (2 * (Math.floor((array_number.length - 3) / 2))))));
+                                const array_number_part_3 = decimal_part_1.slice((0), ((decimal_part_1.length - 3 - (2 * (Math.floor((decimal_part_1.length - 3) / 2))))));
                                 array_join = `${array_number_part_3.join("") + ","}${array_join}`;
                             }
                             const final_array = array_join.toString().split("");
@@ -61,34 +66,90 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (final_array[final_array.length - 1] == ",") {
                                 final_array.pop();
                             }
-                            for (let i = 0; i < array_number_decimal.length; i++) {
-                                if (array_number_decimal[i] == ",") {
-                                    delete array_number_decimal[i];
+                            for (let i = 0; i < decimal_part_2.length; i++) {
+                                if (decimal_part_2[i] == ",") {
+                                    delete decimal_part_2[i];
                                 }
                             }
-                            const final_2 = array_number_decimal.join("");
+                            const final_2 = decimal_part_2.join("");
                             const final = final_array.join("");
-                            const final_final = `${final}${final_2}`;
-                            document.querySelector("#result").innerHTML = `<b>${convertto}</b>&nbsp ${fromcurrency} = &nbsp<b>${final_final}</b>&nbsp ${tocurrency}`;
+                            window.tocurrency_final = `${final}${final_2}`;
                         }
-                        else {
-                            const array_number_0 = converted.toString().split("");
-                            const array_number = array_number_0.splice(0, array_number_0.length - 4);
-                            const array_number_decimal = array_number_0.splice(array_number_0.length - 4, array_number_0.length);
-                            if (array_number.length % 3 == 0) {
+
+                        function fromcurrency_numeral_indian() {
+                            const array_number_0 = convertto_round.split("");
+
+                            for (let j = 0; j < array_number_0.length; j++) {
+                                
+                                if (array_number_0[j] == ".") {
+                                    var decimal_part_1 = array_number_0.slice(0, j);
+                                    var decimal_part_2 = array_number_0.slice(j, array_number_0.length);
+                                }
+                            }
+
+                            if (decimal_part_1.length % 3 == 0) {
                                 var array_join = ``;
-                                for (let i = 1; i <= (array_number.length / 3); i++) {
-                                    const array_number_part_1 = array_number.slice(array_number.length - (3 * i), (array_number.length - (3 * (i - 1))));
+                                const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3), (decimal_part_1.length));
+                                array_join = `${array_number_part_1.join("") + ","}${array_join}`;
+                                for (let i = 1; i <= ((decimal_part_1.length - 3) / 2); i++) {
+                                    const array_number_part_2 = decimal_part_1.slice(decimal_part_1.length - 3 - (2 * i), (decimal_part_1.length - 3 - (2 * (i - 1))));
+                                    array_join = `${array_number_part_2.join("") + ","}${array_join}`;
+                                }
+                                const array_number_part_3 = decimal_part_1.slice((0), ((decimal_part_1.length - 3 - (2 * (Math.floor((decimal_part_1.length - 3) / 2))))));
+                                array_join = `${array_number_part_3.join("") + ","}${array_join}`;
+                            }
+                            else if (decimal_part_1.length % 3 !== 0) {
+                                var array_join = ``;
+                                const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3), (decimal_part_1.length));
+                                array_join = `${array_number_part_1.join("") + ","}${array_join}`;
+                                for (let i = 1; i <= ((decimal_part_1.length - 3) / 2); i++) {
+                                    const array_number_part_2 = decimal_part_1.slice(decimal_part_1.length - 3 - (2 * i), (decimal_part_1.length - 3 - (2 * (i - 1))));
+                                    array_join = `${array_number_part_2.join("") + ","}${array_join}`;
+                                }
+                                const array_number_part_3 = decimal_part_1.slice((0), ((decimal_part_1.length - 3 - (2 * (Math.floor((decimal_part_1.length - 3) / 2))))));
+                                array_join = `${array_number_part_3.join("") + ","}${array_join}`;
+                            }
+                            const final_array = array_join.toString().split("");
+                            if (final_array[0] == ",") {
+                                final_array.shift();
+                            }
+                            if (final_array[final_array.length - 1] == ",") {
+                                final_array.pop();
+                            }
+                            for (let i = 0; i < decimal_part_2.length; i++) {
+                                if (decimal_part_2[i] == ",") {
+                                    delete decimal_part_2[i];
+                                }
+                            }
+                            const final_2 = decimal_part_2.join("");
+                            const final = final_array.join("");
+                            window.fromcurrency_final = `${final}${final_2}`;
+                        }
+
+                        function fromcurrency_numeral_international() {
+                            
+                            const array_number_0 = convertto_round.split("");
+
+                            for (let j = 0; j < array_number_0.length; j++) {
+                                if (array_number_0[j] == ".") {
+                                    var decimal_part_1 = array_number_0.slice(0, j);
+                                    var decimal_part_2 = array_number_0.slice(j, array_number_0.length);
+                                }
+                            }
+                            if (decimal_part_1.length % 3 == 0) {
+                                var array_join = ``;
+                                for (let i = 1; i <= (decimal_part_1.length / 3); i++) {
+                                    const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3 * i), (decimal_part_1.length - (3 * (i - 1))));
                                     array_join = `${array_number_part_1.join("") + ","}${array_join}`;
                                 }
                             }
-                            else if (array_number.length % 3 !== 0) {
+                            else if (decimal_part_1.length % 3 !== 0) {
                                 var array_join = ``;
-                                for (let i = 1; i <= (array_number.length / 3); i++) {
-                                    const array_number_part_1 = array_number.slice(array_number.length - (3 * i), (array_number.length - (3 * (i - 1))));
+                                for (let i = 1; i <= (decimal_part_1.length / 3); i++) {
+                                    const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3 * i), (decimal_part_1.length - (3 * (i - 1))));
                                     array_join = `${array_number_part_1.join("") + ","}${array_join}`;
                                 }
-                                const array_number_part_2 = array_number.slice((0), ((array_number.length - (3 * (Math.floor(array_number.length / 3))))));
+                                const array_number_part_2 = decimal_part_1.slice((0), ((decimal_part_1.length - (3 * (Math.floor(decimal_part_1.length / 3))))));
                                 array_join = `${array_number_part_2.join("") + ","}${array_join}`;
                             }
                             const final_array = array_join.toString().split("");
@@ -98,15 +159,86 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (final_array[final_array.length - 1] == ",") {
                                 final_array.pop();
                             }
-                            for (let i = 0; i < array_number_decimal.length; i++) {
-                                if (array_number_decimal[i] == ",") {
-                                    delete array_number_decimal[i];
+                            for (let i = 0; i < decimal_part_2.length; i++) {
+                                if (decimal_part_2[i] == ",") {
+                                    delete decimal_part_2[i];
                                 }
                             }
-                            const final_2 = array_number_decimal.join("");
+                            for (let i = 0; i < decimal_part_2.length; i++) {
+                                if (decimal_part_2[i] == ",") {
+                                    delete decimal_part_2[i];
+                                }
+                            }
+                            
+                            const final_2 = decimal_part_2.join("");
                             const final = final_array.join("");
-                            const final_final = `${final}${final_2}`;
-                            document.querySelector("#result").innerHTML = `<b>${convertto}</b>&nbsp ${fromcurrency} = &nbsp<b>${final_final}</b>&nbsp ${tocurrency}`;
+                            window.fromcurrency_final = `${final}${final_2}`;
+                        }
+
+                        function tocurrency_numeral_international() {
+                            const array_number_0 = converted.toString().split("");
+                            for (let j = 0; j < array_number_0.length; j++) {
+                                if (array_number_0[j] == ".") {
+                                    var decimal_part_1 = array_number_0.slice(0, j);
+                                    var decimal_part_2 = array_number_0.slice(j, array_number_0.length);
+                                }
+                            }
+                            if (decimal_part_1.length % 3 == 0) {
+                                var array_join = ``;
+                                for (let i = 1; i <= (decimal_part_1.length / 3); i++) {
+                                    const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3 * i), (decimal_part_1.length - (3 * (i - 1))));
+                                    array_join = `${array_number_part_1.join("") + ","}${array_join}`;
+                                }
+                            }
+                            else if (decimal_part_1.length % 3 !== 0) {
+                                var array_join = ``;
+                                for (let i = 1; i <= (decimal_part_1.length / 3); i++) {
+                                    const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3 * i), (decimal_part_1.length - (3 * (i - 1))));
+                                    array_join = `${array_number_part_1.join("") + ","}${array_join}`;
+                                }
+                                const array_number_part_2 = decimal_part_1.slice((0), ((decimal_part_1.length - (3 * (Math.floor(decimal_part_1.length / 3))))));
+                                array_join = `${array_number_part_2.join("") + ","}${array_join}`;
+                            }
+                            const final_array = array_join.toString().split("");
+                            if (final_array[0] == ",") {
+                                final_array.shift();
+                            }
+                            if (final_array[final_array.length - 1] == ",") {
+                                final_array.pop();
+                            }
+                            for (let i = 0; i < decimal_part_2.length; i++) {
+                                if (decimal_part_2[i] == ",") {
+                                    delete decimal_part_2[i];
+                                }
+                            }
+                            const final_2 = decimal_part_2.join("");
+                            const final = final_array.join("");
+                            window.tocurrency_final = `${final}${final_2}`;
+                        }
+
+
+                        if (tocurrency == "INR" && fromcurrency !== "INR") {
+                            fromcurrency_numeral_international();
+                            tocurrency_numeral_indian();
+                            document.querySelector("#result").innerHTML = `<b>${window.fromcurrency_final}</b>&nbsp ${fromcurrency} = &nbsp<b>${window.tocurrency_final}</b>&nbsp ${tocurrency}`;
+                        }
+                        else if (tocurrency !== "INR" && fromcurrency == "INR") {
+                            tocurrency_numeral_international();
+                            fromcurrency_numeral_indian();
+                            document.querySelector("#result").innerHTML = `<b>${window.fromcurrency_final}</b>&nbsp ${fromcurrency} = &nbsp<b>${window.tocurrency_final}</b>&nbsp ${tocurrency}`;
+                        }
+                        else if (tocurrency == "INR" && fromcurrency == "INR") {
+                            tocurrency_numeral_indian();
+                            fromcurrency_numeral_indian();
+                            document.querySelector("#result").innerHTML = `<b>${window.fromcurrency_final}</b>&nbsp ${fromcurrency} = &nbsp<b>${window.tocurrency_final}</b>&nbsp ${tocurrency}`;
+                        }
+                        else if (tocurrency !== "INR" && fromcurrency !== "INR") {
+                            tocurrency_numeral_international();
+                            fromcurrency_numeral_international();
+                            document.querySelector("#result").innerHTML = `<b>${window.fromcurrency_final}</b>&nbsp ${fromcurrency} = &nbsp<b>${window.tocurrency_final}</b>&nbsp ${tocurrency}`;
+                        }
+                        else {
+                            alert("something went wrong!");
                         }
                     }
                     else {
