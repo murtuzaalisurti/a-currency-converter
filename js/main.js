@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     var decimal_part_2 = array_number_0.slice(j, array_number_0.length);
                                 }
                             }
-                            
+
                             if (decimal_part_1.length % 3 == 0) {
                                 var array_join = ``;
                                 const array_number_part_1 = decimal_part_1.slice(decimal_part_1.length - (3), (decimal_part_1.length));
@@ -66,6 +66,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (final_array[final_array.length - 1] == ",") {
                                 final_array.pop();
                             }
+                            if (final_array.length <= 3) {
+                                console.log("hi");
+                                for (let i = 0; i < final_array.length; i++) {
+                                    if (final_array[i] == ",") {
+                                        delete final_array[i];
+                                        console.log(final_array);
+                                    }
+                                }
+                            }
                             for (let i = 0; i < decimal_part_2.length; i++) {
                                 if (decimal_part_2[i] == ",") {
                                     delete decimal_part_2[i];
@@ -80,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             const array_number_0 = convertto_round.split("");
 
                             for (let j = 0; j < array_number_0.length; j++) {
-                                
+
                                 if (array_number_0[j] == ".") {
                                     var decimal_part_1 = array_number_0.slice(0, j);
                                     var decimal_part_2 = array_number_0.slice(j, array_number_0.length);
@@ -109,12 +118,22 @@ document.addEventListener("DOMContentLoaded", function () {
                                 const array_number_part_3 = decimal_part_1.slice((0), ((decimal_part_1.length - 3 - (2 * (Math.floor((decimal_part_1.length - 3) / 2))))));
                                 array_join = `${array_number_part_3.join("") + ","}${array_join}`;
                             }
+
                             const final_array = array_join.toString().split("");
                             if (final_array[0] == ",") {
                                 final_array.shift();
                             }
                             if (final_array[final_array.length - 1] == ",") {
                                 final_array.pop();
+                            }
+                            if (final_array.length <= 3) {
+                                console.log("hi");
+                                for (let i = 0; i < final_array.length; i++) {
+                                    if (final_array[i] == ",") {
+                                        delete final_array[i];
+                                        console.log(final_array);
+                                    }
+                                }
                             }
                             for (let i = 0; i < decimal_part_2.length; i++) {
                                 if (decimal_part_2[i] == ",") {
@@ -124,10 +143,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             const final_2 = decimal_part_2.join("");
                             const final = final_array.join("");
                             window.fromcurrency_final = `${final}${final_2}`;
+
+                            console.log(decimal_part_1);
+                            console.log(decimal_part_2);
+                            console.log(final_array);
+                            console.log(array_join);
                         }
 
                         function fromcurrency_numeral_international() {
-                            
+
                             const array_number_0 = convertto_round.split("");
 
                             for (let j = 0; j < array_number_0.length; j++) {
@@ -169,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     delete decimal_part_2[i];
                                 }
                             }
-                            
+
                             const final_2 = decimal_part_2.join("");
                             const final = final_array.join("");
                             window.fromcurrency_final = `${final}${final_2}`;
