@@ -119,7 +119,7 @@ input[type=number]::-webkit-inner-spin-button {
     flex-flow: row wrap;
     justify-content: center;
     color: #173753;
-    font-size: 30px;
+    font-size: 2rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     margin-top: 50px;
