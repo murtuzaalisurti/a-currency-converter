@@ -1,6 +1,6 @@
 # A simple currency exchange rate calculator!
 
-<img src="assets/currency_converter.jpg" width="200">
+<img src="assets/currency_converter.jpg" width="500">
 
 ### How to use?
 Try this calculator by visiting [this link](https://murtuzaalisurti.github.io/a-currency-converter) and just enter the amount of which you want to know the exchange rate!
