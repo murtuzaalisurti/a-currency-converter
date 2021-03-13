@@ -14,6 +14,7 @@ Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#
 
 <details open>
   <summary size="17px">Which technologies are used?</summary>
+      hello
   <li>HTML</li>
   <li>CSS</li>
   <li>JavaScript</li>
