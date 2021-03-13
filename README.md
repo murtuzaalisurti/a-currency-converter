@@ -19,7 +19,7 @@ Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#
 ---
 
 <details open>
-  <summary><h1 style="display:inline-block">&nbsp;Which technologies are used?</h1></summary>
+  <summary style="font-size:18px">&nbsp;Which technologies are used?</summary>
   <pre>
     HTML
     CSS
