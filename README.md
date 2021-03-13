@@ -13,16 +13,12 @@ Currency exchange rates are fetched from the following API:- [exchangeratesapi.i
 Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#usage) for more information.
 
 <details open>
-  <summary fontsize="17px">Which technologies are used?</summary>
+  <summary><b>Which technologies are used?</b></summary>
   <pre>
-     HTML
-     CSS
-     JavaScript
+    HTML
+    CSS
+    JavaScript
   </pre>
-  <li>HTML</li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-  <li>Currency exchange rates are fetched from the following API:- <a href="https://github.com/exchangeratesapi/exchangeratesapi">exchangeratesapi.io</a></li>
  </details>
 
 ### How can I contribute?
