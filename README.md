@@ -14,6 +14,7 @@ Try this calculator by visiting [this link](https://murtuzaalisurti.github.io/a-
 <details open>
   <summary><strong>&nbsp;Languages</strong></summary>
   <ul>
+    <br>
     <pre>
     HTML
     CSS
