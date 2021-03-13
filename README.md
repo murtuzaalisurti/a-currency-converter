@@ -15,12 +15,11 @@ Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#
 ---
 
 <details open>
-  <summary><b><h1 style="display=inline-block">Which technologies are used?</h1></b></summary>
+  <summary><b>&nbsp;Which technologies are used?</b></summary>
   <pre>
     HTML
     CSS
-    JavaScript
-  </pre>
+    JavaScript</pre>
  </details>
 
 ### How can I contribute?
