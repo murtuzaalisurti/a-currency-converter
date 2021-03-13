@@ -19,7 +19,8 @@ Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#
 ---
 
 <details open>
-  <summary style="font-size:32px">&nbsp;Which technologies are used?</summary>
+  <summary><strong>&nbsp;Which technologies are used?</strong></summary>
+  
   <pre>
     HTML
     CSS
