@@ -13,7 +13,7 @@ Currency exchange rates are fetched from the following API:- [exchangeratesapi.i
 Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#usage) for more information.
 
 <details open>
-  <h3><summary>Which technologies are used?</summary></h3>
+  <summary> Which technologies are used?</summary>
   <li>HTML</li>
   <li>CSS</li>
   <li>JavaScript</li>
