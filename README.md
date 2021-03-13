@@ -16,13 +16,13 @@ Try this calculator by visiting [this link](https://murtuzaalisurti.github.io/a-
   <ul>
     <br>
     <pre>
-    HTML
-    CSS
-    JavaScript</pre>
+    > HTML
+    > CSS
+    > JavaScript</pre>
   </ul>
  </details>
  
-### API
+#### API
 Currency exchange rates are fetched from the following API:- [exchangeratesapi.io](https://github.com/exchangeratesapi/exchangeratesapi)
 
 Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#usage) for more information.
