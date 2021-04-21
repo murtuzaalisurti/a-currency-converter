@@ -23,9 +23,9 @@
  </details>
  
 #### API
-Currency exchange rates are fetched from the following API:- [exchangeratesapi.io](https://github.com/exchangeratesapi/exchangeratesapi)
+Currency exchange rates are fetched from the following API:- [ratesapi.io](https://github.com/apilayer/ratesapi)
 
->Read their [documentation](https://github.com/exchangeratesapi/exchangeratesapi#usage) for more information.
+>Read their [documentation](https://github.com/apilayer/ratesapi#usage) for more information.
 
 ----
 
