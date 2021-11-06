@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#btn").disabled = false;
         document.querySelector("form").onsubmit = () => {
             const fromcurrency = document.querySelector("#drop-down-1").value;
-            var url = new URL("https://api.ratesapi.io/latest?base=USD");
+            var url = new URL("https://api.exchangerate.host/latest?base=USD");
             var search_params = url.searchParams;
             let Base = search_params.set('base', fromcurrency);
             url.search = search_params.toString();
